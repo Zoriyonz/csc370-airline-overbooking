@@ -58,3 +58,26 @@ Every non-trivial functional dependency has a superkey on its left side.
 - A booking's seat is not yet checked against the seat map of the flight's aircraft type (needs a trigger or a redesign).
 - Bumping is demonstrated as a query only. It is not yet a transaction.
 - Dataset is tiny. Indexing and performance work needs generated data.
+
+## Sprint 1 plan
+
+Scope: Lesson 08 (Constraints & Referential Integrity) and Lesson 09 (Inheritance & Weak Entity Sets).
+Competency: Data Modelling, Level 2 into Level 3.
+
+### Goal 1: Enforce that a booked seat exists on the flight's aircraft type
+
+- **What:** Compare (a) storing the aircraft type on flights with a composite foreign key against (b) a trigger. Judge them using my functional dependency analysis, then implement one.
+- **Competency:** Justifies schema quality through a theoretical lens (L2). Assesses incongruity between conceptual and relational schemata (L3).
+- **Success criterion:** 3 invalid seat assignments are rejected and 3 valid ones are accepted. The dependency table is updated to match the final design.
+
+### Goal 2: Write every constraint in relational algebra (Lesson 08)
+
+- **What:** Express every key and foreign key in relational algebra, including the seat rule from Goal 1.
+- **Competency:** Identifies dependencies and keys. Maps requirements onto schemata (L2).
+- **Success criterion:** A constraints document covering all 13 current foreign keys plus the seat rule, with each one linked to a failing-insert test.
+
+### Goal 3: Revise the ERD with weak entities and inheritance (Lesson 09)
+
+- **What:** Show Seat as a weak entity of Aircraft Type and Bump Event as a subclass of Booking. Compare giving the subclass its own table against one table with NULLs.
+- **Competency:** Uses inheritance and weak entity sets. Considers the impact of NULLs and inheritance on functional dependencies (L3).
+- **Success criterion:** An updated ERD, a one-page comparison with a recommendation, and a schema that is still in BCNF with an updated dependency table.
